@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import DynamicForm from './DynamicForm';
-import LoginPage from './LoginPage';
-import Dashboard from './Dashboard';
+import DynamicForm from './form/DynamicForm';
+import LoginPage from './login/LoginPage';
+import Dashboard from './dashboard/Dashboard';
 
 function App() {
   const [isSigningIn, setIsSigningIn] = useState(false);
