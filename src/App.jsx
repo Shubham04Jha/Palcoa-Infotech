@@ -1,70 +1,23 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import DynamicForm from './form/DynamicForm';
-import LoginPage from './login/LoginPage';
-import Dashboard from './dashboard/Dashboard';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "sonner";
+import SignIn from "./pages/SignIn";
+import PrivateRoute from "./components/PrivateRoute";
+import Form from "./pages/Form";
+import Dashboard from "./pages/Dashboard";
 
-function App() {
-  const [isSigningIn, setIsSigningIn] = useState(false);
-  const [formData, setFormData] = useState(null); 
-
-  const formFields = [
-    {
-      name: 'username',
-      type: 'text',
-      label: 'Username',
-      placeholder: 'Enter your username',
-      required: true,
-    },
-    {
-      name: 'password',
-      type: 'password',
-      label: 'Password',
-      placeholder: 'Enter your password',
-      required: true,
-    },
-  ];
-
-  const handleFormSubmit = (data) => {
-    if (navigator.onLine) {
-      performSignIn(data);
-    } else {
-      alert('You are offline. The sign-in process will start when you are back online.');
-      setIsSigningIn(true);
-      setFormData(data);
-    }
-  };
-
-  const performSignIn = (data) => {
-    console.log('Signing in with', data);
-  };
-
-  useEffect(() => {
-    const handleOnline = () => {
-      if (isSigningIn && formData) {
-        performSignIn(formData);
-        setIsSigningIn(false);
-        setFormData(null);
-      }
-    };
-
-    window.addEventListener('online', handleOnline);
-    return () => {
-      window.removeEventListener('online', handleOnline);
-    };
-  }, [isSigningIn, formData]);
-
+export default function App() {
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
+    <BrowserRouter>
+      <Toaster position="top-right" richColors />
+      <Routes>
+      <Route path="/sign-in" element={<SignIn />} />
+        <Route element={<PrivateRoute />}>
+          
+          <Route path="/form" element={<Form />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/form" element={<DynamicForm fields={formFields} onSubmit={handleFormSubmit} />} />
-        </Routes>
-      </Router>
-    </div>
+        </Route>
+      </Routes>
+      
+    </BrowserRouter>
   );
 }
-
-export default App;
