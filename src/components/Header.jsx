@@ -10,8 +10,8 @@ import useSignOut from "../hooks/useSignOut";
 import { useSelector } from "react-redux";
 
 const navigation = [
-  { name: "Add Task", href: "/addtask", current: false },
   { name: "Dashboard", href: "/dashboard", current: false },
+  { name: "Add Task", href: "/addtask", current: false },
   { name: "About", href: "/about", current: false },
 ];
 
