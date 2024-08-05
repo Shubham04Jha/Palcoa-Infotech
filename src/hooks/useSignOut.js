@@ -8,6 +8,7 @@ const useSignOut = () => {
 
   const handleSignout = async () => {
     dispatch(signoutSuccess());
+    toast.success("Signed Out Sucessfully");
   };
 
   return { handleSignout };

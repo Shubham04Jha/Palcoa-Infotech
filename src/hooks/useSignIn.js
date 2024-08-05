@@ -11,6 +11,7 @@ const useSignIn = () => {
     dispatch(signInStart());
       navigate('/dashboard');
       dispatch(signInSuccess(formData));
+      toast.success("Signed In Sucessfully");
   };
 
   return {
