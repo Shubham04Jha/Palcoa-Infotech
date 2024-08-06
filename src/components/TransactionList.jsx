@@ -10,10 +10,10 @@ function TransactionList() {
     }
 
     return (
-        <ul className=" shadow overflow-hidden sm:rounded-md max-w-5xl mx-auto mt-16 ">
+        <ul className=" shadow overflow-hidden sm:rounded-md max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto mt-16 ">
             {products.length > 0 ? (
                 products.map((product) => (
-                    <li key={product.id} className="border-t border-gray-200 bg-white my-8 sm:rounded-md">
+                    <li key={product.id} className="border-t border-gray-200 bg-white my-8 rounded-md">
                         <div className="px-4 py-5 sm:px-6">
                             <div className="flex items-center justify-between">
                                 <h3 className="text-lg leading-6 font-medium text-gray-900">{product.productName}</h3>

@@ -42,7 +42,7 @@ export default function Header() {
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <DisclosureButton
-                  className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                  className="mx-4 relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                   onClick={toggleMobileMenu}
                 >
                   <span className="absolute -inset-0.5" />
@@ -56,7 +56,7 @@ export default function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <div className=" text-purple-400 text-3xl">OffSync</div>
+                  <div className=" text-purple-400 font-bold text-3xl">OffSync</div>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -78,12 +78,17 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-
+              {
+                currentUser ?
+                <button class="bg-transparent text-sm hover:bg-red-500 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={handleSignout}>
+                  Sign Out
+                </button> : <></>
+              }
             </div>
           </div>
 
           <DisclosurePanel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
+            <div className="space-y-1 px-8 pb-3 pt-2">
               {updatedNavigation.map((item) => (
                 <Link
                   key={item.name}
