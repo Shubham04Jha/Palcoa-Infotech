@@ -18,7 +18,7 @@ const useAddData = () => {
     dispatch(sendDataStart()); 
     
     try {
-      throw new Error("Simulated send error");
+      // throw new Error("Simulated send error");
       console.log("Sending data", formData);
       dispatch(sendDataSuccess()); 
 

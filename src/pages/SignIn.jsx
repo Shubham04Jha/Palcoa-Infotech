@@ -47,7 +47,7 @@ const SignIn = () => {
               </span>
             </Link>
             <p className="mt-5 text-2xl text-blue-200">
-              Web form with Offline Capabilities
+              Web Form with Offline Capabilities
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@ const SignIn = () => {
               <Label value="Password" className="text-white" />
               <TextInput
                 type="password"
-                placeholder="Password"
+                placeholder="password"
                 id="password"
                 value={formData.password}
                 onChange={handleChange}

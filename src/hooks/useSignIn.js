@@ -6,12 +6,28 @@ import { toast } from 'sonner';
 const useSignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (formData) => {
     dispatch(signInStart());
-      navigate('/dashboard');
-      dispatch(signInSuccess(formData));
-      toast.success("Signed In Sucessfully");
+    try {
+      const res = await fetch('http://localhost:3000/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include' ,
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        toast.error(data.message)
+        dispatch(signInFailure(data.message));
+      } else {
+        navigate('/dashboard');
+        console.log(data);
+        dispatch(signInSuccess(data));
+      }
+    } catch (error) {
+      dispatch(signInFailure(error.message));
+    }
   };
 
   return {
