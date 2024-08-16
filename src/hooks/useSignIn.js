@@ -17,21 +17,20 @@ const useSignIn = () => {
         body: JSON.stringify(formData),
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
-        const errorData = await res.json();
-        toast.error(errorData.message || 'An error occurred');
-        dispatch(signInFailure(errorData.message || 'An error occurred'));
+        toast.error(data.message || 'An error occurred');
+        dispatch(signInFailure(data.message || 'An error occurred'));
         return;
       }
-
-      const data = await res.json();
 
       if (data.success === false) {
         toast.error(data.message || 'Authentication failed');
         dispatch(signInFailure(data.message || 'Authentication failed'));
       } else {
         navigate('/dashboard');
-        console.log(data);
+        console.log(data); 
         dispatch(signInSuccess(data));
       }
     } catch (error) {
