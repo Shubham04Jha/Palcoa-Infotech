@@ -1,10 +1,12 @@
 import { Spinner } from "flowbite-react";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAddData from '../hooks/useAddData';
 import { useSelector } from 'react-redux';
+import useGetPublicKey from "../hooks/useGetPublicKey";
 
 function Form() {
     const { handleSubmit } = useAddData();
+    const { handleGetPublicKey } = useGetPublicKey();
     const { loading } = useSelector((state) => state.user);
 
     const [formData, setFormData] = useState({
@@ -30,6 +32,12 @@ function Form() {
             stock: "",
         });
     };
+
+    useEffect(() => {
+        if (!sessionStorage.getItem('public_key')) {
+          handleGetPublicKey();
+        }
+    }, []);
 
     return (
         <div className="max-w-lg mx-auto p-4">

@@ -52,6 +52,18 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    getPublicKeyStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    getPublicKeySuccess: (state) => {
+      state.loading = false;
+      state.error = null;
+    },
+    getPublicKeyFailure: (state , action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -66,6 +78,9 @@ export const {
   sendDataStart,
   sendDataSuccess,
   sendDataFailure,
+  getPublicKeyStart,
+  getPublicKeySuccess,
+  getPublicKeyFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;
