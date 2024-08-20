@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
-import CryptoJS from "crypto-js";
 import {
   addDataFailure,
   addDataStart,
@@ -10,24 +9,9 @@ import {
   sendDataFailure,
 } from "../redux/user/userSlice";
 import { db } from "../database/dexie";
+import { encryptFormData } from "../utils/encrypt";
 
 const SECRET_KEY = 'your-secret-key';
-
-const encryptValue = (value, key) => {
-  return CryptoJS.AES.encrypt(value, key).toString();
-};
-
-const encryptFormData = (formData, key) => {
-  const encryptedData = {};
-  for (const [fieldKey, value] of Object.entries(formData)) {
-    if (fieldKey === 'productName' || fieldKey === 'description') {
-      encryptedData[fieldKey] = value;
-    } else {
-      encryptedData[fieldKey] = encryptValue(value, key);
-    }
-  }
-  return encryptedData;
-};
 
 const useAddData = () => {
   const dispatch = useDispatch();
