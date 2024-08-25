@@ -10,7 +10,7 @@ function TransactionList() {
     }
 
     return (
-        <ul className=" shadow overflow-hidden sm:rounded-md max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto mt-16 ">
+        <ul className=" shadow overflow-hidden sm:rounded-md max-w-[70%] md:max-w-2xl lg:max-w-3xl mx-auto mt-16 ">
             {products.length > 0 ? (
                 products.map((product) => (
                     <li key={product.id} className="border-t border-gray-200 bg-white my-8 rounded-md">

@@ -80,7 +80,7 @@ export default function Header() {
               </div>
               {
                 currentUser ?
-                <button class="bg-transparent text-sm hover:bg-red-500 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={handleSignout}>
+                <button className=" mr-10 sm:mr-0 bg-transparent text-sm hover:bg-red-500 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={handleSignout}>
                   Sign Out
                 </button> : <></>
               }
