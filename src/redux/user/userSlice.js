@@ -64,6 +64,18 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    sendDataWhenOnlineStart: (state) => {
+      state.loading = true;
+      state.error = null;
+    },
+    sendDataWhenOnlineSuccess: (state, action) => {
+      state.loading = false;
+      state.error = null;
+    },
+    sendDataWhenOnlineFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -81,6 +93,9 @@ export const {
   getPublicKeyStart,
   getPublicKeySuccess,
   getPublicKeyFailure,
+  sendDataWhenOnlineStart,
+  sendDataWhenOnlineSuccess,
+  sendDataWhenOnlineFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -10,7 +10,7 @@ const useGetPublicKey = () => {
   const handleGetPublicKey = async (formData) => {
     dispatch(getPublicKeyStart());
     try {
-      const res = await fetch('https://palcoa-infotech-backend.vercel.app/form', {
+      const res = await fetch('http://localhost:3000/form', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', 
@@ -18,12 +18,13 @@ const useGetPublicKey = () => {
       });
 
       const data = await res.json();
+      console.log(data);
 
       if (!res.ok) {
         toast.error(data.message || 'An error occurred');
         dispatch(getPublicKeyFailure(data.message || 'An error occurred'));
         return;
-      }
+      } 
 
       if (data.success === false) {
         toast.error(data.message || 'Authentication failed');

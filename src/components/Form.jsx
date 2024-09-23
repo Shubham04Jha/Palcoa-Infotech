@@ -34,10 +34,12 @@ function Form() {
     };
 
     useEffect(() => {
-        if (!sessionStorage.getItem('public_key')) {
-          handleGetPublicKey();
+        const publicKey = sessionStorage.getItem('public_key');
+        if (!publicKey) {
+            handleGetPublicKey();
         }
-    }, []);
+    }, []); 
+    
 
     return (
         <div className="max-w-lg mx-auto p-4">
