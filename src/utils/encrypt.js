@@ -1,5 +1,17 @@
 import JSEncrypt from 'jsencrypt';
 
+// const buffer = Buffer.from(data, 'utf8');
+// const encrypted = crypto.publicEncrypt(
+//   {
+//     key: publicKey,
+//     padding: crypto.constants.RSA_PKCS1_PADDING,
+//   },
+//   buffer
+// );
+
+// const encryptedData = encrypted.toString('base64');
+// console.log('Encrypted data:', encryptedData);
+
 export const encryptValue = (value, key) => {
   const jsEncrypt = new JSEncrypt();
   jsEncrypt.setPublicKey(key);
