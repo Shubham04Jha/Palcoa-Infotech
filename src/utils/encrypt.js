@@ -1,7 +1,12 @@
-import CryptoJS from "crypto-js";
+import JSEncrypt from 'jsencrypt';
 
 export const encryptValue = (value, key) => {
-  return CryptoJS.AES.encrypt(value, key).toString();
+  const jsEncrypt = new JSEncrypt();
+  jsEncrypt.setPublicKey(key);
+  const encryptedValue = jsEncrypt.encrypt(value);
+  console.log("Original value:", value);
+  console.log("Encrypted value:", encryptedValue);
+  return encryptedValue;
 };
 
 export const encryptFormData = (formData, key) => {
@@ -13,5 +18,6 @@ export const encryptFormData = (formData, key) => {
       encryptedData[fieldKey] = encryptValue(value, key);
     }
   }
+  console.log("Final encrypted form data:", encryptedData);
   return encryptedData;
 };
