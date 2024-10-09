@@ -1,29 +1,4 @@
 const cacheData = "appV1";  // Name of the cache
-//----------------------------------------------------------------------------------------------------------------------------
-// 'install' event listener to cache essential resources
-// self.addEventListener("install", (event) => {
-//     event.waitUntil(
-//         caches.open(cacheData).then((cache) => {
-//             return cache.addAll([
-//                 '/',                   // Root page
-//                 '/index.html',         // Index page
-//                 '/index.css',          // Main CSS file
-//                 '/src/main.jsx',       // Main JS entry
-//                 // Add other essential files
-//             ]);
-//         })
-//     );
-// });
-
-// // 'install' event listener to cache essential resources
-// self.addEventListener("install", (event) => {
-//     event.waitUntil(
-//         caches.open(cacheData).then((cache) => {
-//             return cache.addAll(staticAssets);  // Cache predefined assets
-//         })
-//     );
-// });
-//----------------------------------------------------------------------------------------------------------------------------
 
 const staticAssets = [
     '/',                   // Root page
@@ -40,14 +15,24 @@ self.addEventListener("install", (event) => {
             return cache.addAll(staticAssets);  // Cache predefined assets
         })
     );
-});     
+});
 
 // Flag to track if the offline notification has been shown
 let notificationShown = false;
 
 // 'fetch' event listener for serving and caching resources dynamically
 self.addEventListener("fetch", (event) => {
-    // Check if the user is offline
+    // Check if the request is for a navigation (HTML) request
+    if (event.request.mode === 'navigate') {
+        event.respondWith(
+            fetch(event.request).catch(() => {
+                return caches.match('/index.html'); // Serve index.html if offline
+            })
+        );
+        return; // Exit after handling navigation request
+    }
+
+    // Handle offline notification and resource serving
     if (!navigator.onLine) {
         if (!notificationShown) {
             notificationShown = true; // Set the flag to true
@@ -68,7 +53,6 @@ self.addEventListener("fetch", (event) => {
                 });
             })
         );
-
     } else {
         notificationShown = false; // Reset the flag when back online
         
@@ -99,4 +83,19 @@ self.addEventListener("fetch", (event) => {
             })
         );
     }
+});
+
+// 'activate' event listener to clean up old caches
+self.addEventListener('activate', (event) => {
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (cacheName !== cacheData) {
+                        return caches.delete(cacheName); // Delete old caches
+                    }
+                })
+            );
+        })
+    );
 });
