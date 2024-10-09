@@ -24,29 +24,18 @@ const useAddData = () => {
       return;
     }
     try {
-      const encryptedData = encryptFormData(formData, publicKey);
-
-      // simulated error
-      throw new Error("Simulated send error");
-      console.log("Sending encrypted data", encryptedData);
-      dispatch(sendDataSuccess());
-    } catch (sendError) {
-      dispatch(sendDataFailure(sendError.message || "Failed to send data"));
-      toast.error(sendError.message || "Failed to send data");
-
-      try {
-        const encryptedDataForDB = encryptFormData(formData, publicKey);
-        const id = await db.products.add({
-          ...encryptedDataForDB,
-          public_key: publicKey,
-          failed: false,
-        });
-        dispatch(addDataSuccess({ id, ...encryptedDataForDB }));
-      } catch (dbError) {
-        dispatch(addDataFailure(dbError.message || "Failed to add data to IndexedDB"));
-        toast.error(dbError.message || "Failed to add data to IndexedDB");
-      }
+      const encryptedDataForDB = encryptFormData(formData, publicKey);
+      const id = await db.products.add({
+        ...encryptedDataForDB,
+        public_key: publicKey,
+        failed: false,
+      });
+      dispatch(addDataSuccess({ id, ...encryptedDataForDB }));
+    } catch (dbError) {
+      dispatch(addDataFailure(dbError.message || "Failed to add data to IndexedDB"));
+      toast.error(dbError.message || "Failed to add data to IndexedDB");
     }
+    dispatch(sendDataSuccess());
   };
 
   return {
