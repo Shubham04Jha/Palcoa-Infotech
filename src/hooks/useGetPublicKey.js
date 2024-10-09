@@ -10,7 +10,7 @@ const useGetPublicKey = () => {
   const handleGetPublicKey = async (formData) => {
     dispatch(getPublicKeyStart());
     try {
-      const res = await fetch('http://localhost:3000/form', {
+      const res = await fetch('https://palcoa-infotech-backend.vercel.app/form', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', 

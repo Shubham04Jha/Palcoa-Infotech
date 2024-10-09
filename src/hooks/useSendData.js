@@ -14,7 +14,7 @@ const useSendData = (isOnline, products) => {
             dispatch(sendDataWhenOnlineStart());
 
             try {
-                const response = await fetch('http://localhost:3000/send', {
+                const response = await fetch('https://palcoa-infotech-backend.vercel.app/send', {
                     method: 'POST',
                     body: JSON.stringify(dataToSend),
                     headers: {

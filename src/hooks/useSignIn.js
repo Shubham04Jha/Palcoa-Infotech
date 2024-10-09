@@ -10,7 +10,7 @@ const useSignIn = () => {
   const handleSubmit = async (formData) => {
     dispatch(signInStart());
     try {
-      const res = await fetch('http://localhost:3000/auth', {
+      const res = await fetch('https://palcoa-infotech-backend.vercel.app/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include', 
