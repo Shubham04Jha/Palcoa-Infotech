@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../database/dexie';
+import notask from '../../assets/NOTASK.png';
 
 function TransactionList() {
     const products = useLiveQuery(() => db.products.toArray(), []);
@@ -30,7 +31,9 @@ function TransactionList() {
                     </li>
                 ))
             ) : (
-                <li className="px-4 py-5 sm:px-6 font-bold text-3xl text-white">No products available</li>
+                <li className="px-4 py-5 sm:px-6 font-bold text-3xl text-white"><img src={notask} alt="No products available" className="mx-auto  w-auto h-auto object-contain" />
+                <p className="text-white mt-4 text-center">No products available</p>
+                </li>
             )}
         </ul>
     );
