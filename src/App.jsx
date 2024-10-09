@@ -8,7 +8,7 @@ import AddTask from "./pages/AddTask";
 import swDev from "./swdev";
 
 export default function App() {
-  // swDev();
+  swDev();
   return (
     <BrowserRouter>
       <Toaster position="top-right" richColors />

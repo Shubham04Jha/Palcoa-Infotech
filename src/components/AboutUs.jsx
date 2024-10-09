@@ -1,7 +1,7 @@
 import React from 'react';
-import network from '../../assets/NONETWORK2.png';
-import secure from '../../assets/SECURE.png';
-import commitment from '../../assets/COMMITMENT.png';
+import network from '../assets/NONETWORK2.png';
+import secure from '../assets/SECURE.png';
+import commitment from '../assets/COMMITMENT.png';
 function AboutUs() {
 
     const sections = [

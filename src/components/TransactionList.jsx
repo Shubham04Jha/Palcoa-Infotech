@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../database/dexie';
-import notask from '../../assets/NOTASK.png';
+import notask from '../assets/NOTASK.png';
 
 function TransactionList() {
     const products = useLiveQuery(() => db.products.toArray(), []);
