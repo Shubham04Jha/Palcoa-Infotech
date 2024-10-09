@@ -10,9 +10,11 @@ import {
 } from "../redux/user/userSlice";
 import { db } from "../database/dexie";
 import { encryptFormData } from "../utils/encrypt";
+import useOnlineStatus from "./useOnlineStatus";
 
 const useAddData = () => {
   const dispatch = useDispatch();
+  const isOnline = useOnlineStatus();
 
   const handleSubmit = async (formData) => {
     dispatch(sendDataStart());
@@ -30,6 +32,11 @@ const useAddData = () => {
         public_key: publicKey,
         failed: false,
       });
+
+      if(!isOnline) {
+        toast.warning("You are currently offline, data is stored locally and will be uploaded on network retrival")
+      }
+
       dispatch(addDataSuccess({ id, ...encryptedDataForDB }));
     } catch (dbError) {
       dispatch(addDataFailure(dbError.message || "Failed to add data to IndexedDB"));

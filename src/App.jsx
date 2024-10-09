@@ -12,7 +12,7 @@ export default function App() {
     <BrowserRouter>
       <Toaster position="top-right" richColors />
       <Routes>
-      <Route path="/sign-in" element={<SignIn />} />
+      <Route path="/" element={<SignIn />} />
       <Route path="/about" element={<About />} />
         <Route element={<PrivateRoute />}>
           
