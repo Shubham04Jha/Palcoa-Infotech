@@ -6,6 +6,8 @@ import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 import AddTask from "./pages/AddTask";
 import swDev from "./swdev";
+import { Analytics } from "@vercel/analytics/react"
+
 
 export default function App() {
   return (
@@ -21,6 +23,7 @@ export default function App() {
           
         </Route>
       </Routes>
+      <Analytics />
       
     </BrowserRouter>
   );
