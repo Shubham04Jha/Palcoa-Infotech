@@ -8,7 +8,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], 
-                userRemoteConfigs: [[credentialsId: 'github-cred', url: 'https://github.com/BrawlerXull/Palcoa-Infotech.git']]])
+                userRemoteConfigs: [[credentialsId: 'github-cred', url: 'https://github.com/Shubham04Jha/Palcoa-Infotech.git']]])
             }
         }
 
